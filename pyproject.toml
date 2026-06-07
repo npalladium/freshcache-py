@@ -1,7 +1,8 @@
 [project]
 name = "freshcache"
 version = "0.1.0"
-description = "Add your description here"
+description = "Typed Protocol caching + single-flight stale-while-revalidate for Python 3.13+"
+readme = "README.md"
 authors = [
     { name = "Nikhil Pallamreddy", email = "nikhil.pallamreddy+git@gmail.com" }
 ]
