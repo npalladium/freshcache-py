@@ -1,0 +1,103 @@
+[project]
+name = "freshcache"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Nikhil Pallamreddy", email = "nikhil.pallamreddy+git@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.optional-dependencies]
+redis = [
+    "redis>=5.0",
+]
+cachebox = [
+    "cachebox>=4.0",
+]
+cachetools = [
+    "cachetools>=5.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = [
+  # tests/typecheck/ holds static type-checker fixtures; mypy/pyright run
+  # them but pytest must not (they contain top-level constructs that aren't
+  # pytest tests).
+  "--ignore=tests/typecheck",
+  "--cov=freshcache",
+  "--cov-report=term-missing",
+]
+
+[tool.coverage.run]
+source = ["freshcache"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 0
+
+[tool.mutmut]
+source_paths = ["src/freshcache/"]
+pytest_add_cli_args_test_selection = ["tests/"]
+pytest_add_cli_args = ["-x", "-q", "--no-cov"]
+
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+# Behavior tests don't need strict static typing — keep them readable.
+# tests.typecheck.* files are strict (they ARE the static checks).
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = false
+disallow_untyped_decorators = false
+disallow_untyped_calls = false
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+module = "tests.typecheck.*"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+disallow_untyped_calls = true
+warn_return_any = true
+
+[[tool.mypy.overrides]]
+# Benches are not part of the library surface; relax like tests.*.
+module = "bench.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = false
+disallow_untyped_decorators = false
+disallow_untyped_calls = false
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+# pytest_benchmark ships no type stubs.
+module = "pytest_benchmark.*"
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "fakeredis>=2.36.0",
+    "griffe>=2.0.2",
+    "mutmut>=3.6.0",
+    "mypy>=2.1.0",
+    "pyright>=1.1.410",
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.4.0",
+    "pytest-benchmark>=5.2.3",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.11.0",
+    "twine>=6.2.0",
+]

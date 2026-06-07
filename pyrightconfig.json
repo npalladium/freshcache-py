@@ -1,0 +1,40 @@
+{
+  "include": ["src", "tests", "bench"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "strict",
+  "reportMissingTypeStubs": false,
+  "executionEnvironments": [
+    {
+      "root": "tests/typecheck"
+    },
+    {
+      "root": "tests",
+      "reportMissingParameterType": "none",
+      "reportUnknownParameterType": "none",
+      "reportUnknownVariableType": "none",
+      "reportUnknownMemberType": "none",
+      "reportUnknownArgumentType": "none",
+      "reportUnknownLambdaType": "none",
+      "reportMissingTypeArgument": "none",
+      "reportUntypedFunctionDecorator": "none",
+      "reportPrivateUsage": "none",
+      "reportUnusedFunction": "none"
+    },
+    {
+      "root": "bench",
+      "reportMissingImports": "none",
+      "reportMissingParameterType": "none",
+      "reportUnknownParameterType": "none",
+      "reportUnknownVariableType": "none",
+      "reportUnknownMemberType": "none",
+      "reportUnknownArgumentType": "none",
+      "reportUnknownLambdaType": "none",
+      "reportMissingTypeArgument": "none",
+      "reportUntypedFunctionDecorator": "none",
+      "reportPrivateUsage": "none",
+      "reportUnusedFunction": "none"
+    }
+  ]
+}

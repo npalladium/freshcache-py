@@ -1,0 +1,27 @@
+scratch/
+secrets.enc.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tools
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Build + publish
+dist/
+build/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Mutation testing
+.mutmut-cache
+
+# Benchmarks
+.benchmarks/
